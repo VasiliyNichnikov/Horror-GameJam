@@ -65,8 +65,9 @@ public class PlayerRotationCamera : MonoBehaviour
         _rotationX = Mathf.Clamp(_rotationX, _minimalVertical, _maximumVertical);
         
         _rotationY = _thisTransform.localEulerAngles.y;
-        float rotationZ = _animationCamera.GetRotationZ();
         
+        float rotationZ = _animationCamera.GetRotationZ();
+
         _thisTransform.localEulerAngles =  new Vector3(_rotationX, _rotationY, rotationZ);
     }
     

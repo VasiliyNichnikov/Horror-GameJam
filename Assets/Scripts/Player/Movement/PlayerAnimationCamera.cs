@@ -24,11 +24,14 @@ public class PlayerAnimationCamera : MonoBehaviour
     public float GetRotationZ()
     {
         float z = GetValueAnimation(_progress);
-        _progress += _step;
-        
-        if (_progress >= 1)
+        if(ControlWalk.IsMovement)
         {
-            NextFrame();
+            _progress += _step;
+
+            if (_progress >= 1)
+            {
+                NextFrame();
+            }
         }
         
         return z;
@@ -40,7 +43,9 @@ public class PlayerAnimationCamera : MonoBehaviour
         {
             throw new Exception("t выходит за допустимый диапазон");
         }
-        return (1 - t) * _p0 + t * _p1;
+
+        return Mathf.Lerp(_p0, _p1, t);
+        // return (1 - t) * _p0 + t * _p1;
     }
 
     private void NextFrame()
