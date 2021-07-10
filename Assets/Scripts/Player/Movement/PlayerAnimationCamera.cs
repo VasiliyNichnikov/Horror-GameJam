@@ -45,7 +45,6 @@ public class PlayerAnimationCamera : MonoBehaviour
         }
 
         return Mathf.Lerp(_p0, _p1, t);
-        // return (1 - t) * _p0 + t * _p1;
     }
 
     private void NextFrame()
