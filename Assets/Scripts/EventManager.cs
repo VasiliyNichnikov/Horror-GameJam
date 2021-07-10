@@ -5,7 +5,7 @@ public class EventManager : MonoBehaviour
 {
     #region Actions
 
-    // public static Action<ParametersItem> EventAddItemInInventory;
+    // public static Action<ParametersItem> EventStartInteractionWithItem;
 
     #endregion
 

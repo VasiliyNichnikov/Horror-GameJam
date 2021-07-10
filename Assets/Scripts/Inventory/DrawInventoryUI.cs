@@ -18,7 +18,7 @@ public class DrawInventoryUI : MonoBehaviour
 
     private void SelectIconCell(CellItem cell, ParametersItem item)
     {
-        cell.SetIcon(item.Sprite);
+        cell.SetIconAndItem(item);
     }
     
 }

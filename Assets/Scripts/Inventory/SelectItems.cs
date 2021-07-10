@@ -6,7 +6,8 @@ public class SelectItems : MonoBehaviour
     [SerializeField] [Range(0, 20)] private float _maxDistanceRay;
     [SerializeField] private StoreItems _store;
     [SerializeField] private DrawInventoryUI _drawInventory;
-
+    [SerializeField] private ModeInteractionWithItem _modeInteraction;
+    
     private HintItem _hintItem;
     private Transform _thisTransform;
     private int _layerMask = 1 << 8;
@@ -36,9 +37,13 @@ public class SelectItems : MonoBehaviour
                 Item item = SearchComponentItem(objHit);
                 if (CheckingItemCanTaken(item))
                 {
-                    AddItemOnInventory(item);
-                    _drawInventory.DrawCells();
-                    Destroy(objHit);
+                    TakeItem(item, objHit);
+                }
+                else
+                {
+                    print("Активация инвентаря и двиджение камеры");
+                    // Движение камеры к объекты и показ инвентаря
+                    _modeInteraction.SetActiveModeAndItem(item);
                 }
             }
 
@@ -49,7 +54,8 @@ public class SelectItems : MonoBehaviour
             _hintItem.SelectDisplayButton(false);
         }
     }
-
+    
+    
     private bool WaitingClickAndCheckStore(GameObject objHit)
     {
         return Input.GetKey(KeyCode.E) && _store.CheckAvailableSpace();
@@ -71,6 +77,13 @@ public class SelectItems : MonoBehaviour
         return item.Parameters.TypeActionSubject == TypeActionSubject.SelectionInventory;
     }
 
+    private void TakeItem(Item item, GameObject objHit)
+    {
+        AddItemOnInventory(item);
+        _drawInventory.DrawCells();
+        Destroy(objHit);
+    }
+    
     private void AddItemOnInventory(Item item)
     {
         print($"Предмет: {item.Parameters.Name}");
