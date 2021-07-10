@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 [CustomEditor(typeof(PlayerRotationCamera))]
@@ -20,14 +21,23 @@ public class PlayerRotationCameraEditor : Editor
         _rotationCamera.Axes = (RotationAxes) EditorGUILayout.EnumPopup("Тип вращения:", _rotationCamera.Axes);
         if (_rotationCamera.Axes == RotationAxes.MouseY)
         {
-            _rotationCamera.MinimalVertical = EditorGUILayout.Slider("Minimal vertical:", _rotationCamera.MinimalVertical, -90f, 90f);
-            _rotationCamera.MaximumVertical = EditorGUILayout.Slider("Maximum vertical:", _rotationCamera.MaximumVertical, -90f, 90f);
+            EditorGUILayout.BeginVertical("box");
+            _rotationCamera.MinimalVertical =
+                EditorGUILayout.Slider("Minimal vertical:", _rotationCamera.MinimalVertical, -90f, 90f);
+            _rotationCamera.MaximumVertical =
+                EditorGUILayout.Slider("Maximum vertical:", _rotationCamera.MaximumVertical, -90f, 90f);
+            _rotationCamera.AnimationCamera =
+                (PlayerAnimationCamera) EditorGUILayout.ObjectField("Animation Camera:",
+                    _rotationCamera.AnimationCamera,
+                    typeof(PlayerAnimationCamera), true);
+            EditorGUILayout.EndVertical();
             EditorGUILayout.Space();
         }
+
         _rotationCamera.SensitivityX = EditorGUILayout.Slider("Sensitivity X:", _rotationCamera.SensitivityX, 0f, 100f);
         CheckChanges();
     }
-    
+
     private void CheckChanges()
     {
         if (GUI.changed)
