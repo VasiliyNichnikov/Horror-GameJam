@@ -5,16 +5,16 @@ public class EventManager : MonoBehaviour
 {
     #region Actions
 
-    // public static Action<ParametersItem> EventStartInteractionWithItem;
+    public static Action<ParametersItem> EventChooseItem;
 
     #endregion
 
     #region Public methods
 
-    // public static void CallAddItemInInventiry(ParametersItem item)
-    // {
-    //     EventAddItemInInventory?.Invoke(item);
-    // }
+    public static void CallEventChooseItem(ParametersItem item)
+    {
+        EventChooseItem?.Invoke(item);
+    }
 
     #endregion
 

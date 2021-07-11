@@ -45,12 +45,16 @@ public class PlayerRotationCamera : MonoBehaviour
 
     private void Update()
     {
-        if (_axes == RotationAxes.MouseX)
+        if(!ActionStaticItem.IsActiveInteration)
         {
-            MouseX();
-        }else if (_axes == RotationAxes.MouseY)
-        {
-            MouseY();
+            if (_axes == RotationAxes.MouseX)
+            {
+                MouseX();
+            }
+            else if (_axes == RotationAxes.MouseY)
+            {
+                MouseY();
+            }
         }
     }
     

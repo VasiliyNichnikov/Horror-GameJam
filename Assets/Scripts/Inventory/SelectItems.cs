@@ -34,7 +34,7 @@ public class SelectItems : MonoBehaviour
 
         Debug.DrawRay(_thisTransform.position, transform.TransformDirection(Vector3.forward) * 100, Color.yellow);
         if (Physics.Raycast(_thisTransform.position, transform.TransformDirection(Vector3.forward), out hit,
-            _maxDistanceRay, _layerMask))
+            _maxDistanceRay, _layerMask) && !ActionStaticItem.IsActiveInteration)
         {
             _hitObject = hit.collider.gameObject;
             _hintItem.SelectDisplayButton(true);

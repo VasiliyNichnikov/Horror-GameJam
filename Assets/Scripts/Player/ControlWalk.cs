@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerWalk))]
 public class ControlWalk : MonoBehaviour
@@ -23,8 +22,10 @@ public class ControlWalk : MonoBehaviour
         IsMovement = CheckMovement(deltaX, deltaZ);
         
         _directionWalk = new Vector3(deltaX, 0, deltaZ);
-        
-        _walk.Walking(_directionWalk);
+        if(!ActionStaticItem.IsActiveInteration)
+        {
+            _walk.Walking(_directionWalk);
+        }
     }
 
     private bool CheckMovement(float deltaX, float deltaZ)

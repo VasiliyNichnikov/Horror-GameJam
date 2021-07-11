@@ -1,37 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class ActionStaticItem : MonoBehaviour
 {
-    private StoreItems _store;
+    private Item _selectedItem;
+    private static bool _isActiveInteraction;
+    public static bool IsActiveInteration => _isActiveInteraction;
 
-    private void Start()
+    private void OnEnable()
     {
-        _store = GetComponent<StoreItems>();
+        EventManager.EventChooseItem += ChoiceItem;
     }
 
-    public void CallingInteraction(Item item)
+    private void OnDisable()
     {
-        var isPossible = CheckingPossibilityInteraction(item);
+        EventManager.EventChooseItem -= ChoiceItem;
+    }
+
+    public void ActivatingInteraction(Item item)
+    {
+        _isActiveInteraction = true;
+        _selectedItem = item;
+    }
+
+    private void ChoiceItem(ParametersItem parameters)
+    {
+        if (_selectedItem == null)
+        {
+            throw new Exception("Предмета для взаимодействия нет");
+        }
+        var isPossible = CheckingPossibilityInteraction(parameters);
         if (isPossible)
         {
-            print($"Взаимодействие с объектом: {item.Parameters.Name}");
+            print($"Взаимодействие с объектом: {_selectedItem.Parameters.Name}");
         }
         else
         {
-            print("Игрок не имеет нужного предмета для взаимодействия");
+            print("Данный предмет не подходит");
         }
     }
-
-    private bool CheckingPossibilityInteraction(Item item)
+    
+    private bool CheckingPossibilityInteraction(ParametersItem parameters)
     {
-        List<ParametersItem> parametersItems = _store.Items;
-        foreach (var parametersItem in parametersItems)
-        {
-            if (parametersItem.TypeInteraction == item.Parameters.Type)
-                return true;
-        }
-
-        return false;
+        return _selectedItem.Parameters.Type == parameters.TypeInteraction &&
+               _selectedItem.Parameters.ConditionItem != parameters.ConditionItem;
     }
 }

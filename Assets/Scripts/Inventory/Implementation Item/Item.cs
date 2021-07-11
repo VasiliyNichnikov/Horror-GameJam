@@ -6,11 +6,4 @@ public abstract class Item : MonoBehaviour
     public ParametersItem Parameters => _parameters;
 
     public abstract void InteractionStaticAction(Item item);
-
-    // protected bool CheckingPossibilityInteraction(Item item)
-    // {
-    //     ParametersItem parameters = item.Parameters;
-    //     return _parameters.Type == parameters.TypeInteraction &&
-    //            _parameters.ConditionItem != parameters.ConditionItem;
-    // }
 }
