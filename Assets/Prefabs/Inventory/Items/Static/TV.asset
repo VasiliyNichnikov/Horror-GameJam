@@ -16,6 +16,6 @@ MonoBehaviour:
   _description: '-'
   _type: 5
   _typeInteraction: 3
-  _typeActionSubject: 1
+  conditionItem: 1
   _prefab: {fileID: 0}
   _icon: {fileID: 21300000, guid: 61039f69307f87a4d826802ab7a533c3, type: 3}

@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item")]
 public class ParametersItem : ScriptableObject
@@ -9,7 +7,7 @@ public class ParametersItem : ScriptableObject
     [SerializeField] private string _description;
     [SerializeField] private TypeItem _type;
     [SerializeField] private TypeItem _typeInteraction;
-    [SerializeField] private TypeActionSubject _typeActionSubject;
+    [SerializeField] private ConditionItem conditionItem;
     [SerializeField] private GameObject _prefab;
     [SerializeField] private Sprite _icon;
 
@@ -33,9 +31,9 @@ public class ParametersItem : ScriptableObject
         get => _typeInteraction;
     }
 
-    public TypeActionSubject TypeActionSubject
+    public ConditionItem ConditionItem
     {
-        get => _typeActionSubject;
+        get => conditionItem;
     }
     
     public GameObject Prefab

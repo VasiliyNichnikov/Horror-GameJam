@@ -5,11 +5,11 @@ public class SelectItems : MonoBehaviour
 {
     [SerializeField] [Range(0, 20)] private float _maxDistanceRay;
     [SerializeField] private StoreItems _store;
-    [SerializeField] private DrawInventoryUI _drawInventory;
-    [SerializeField] private ModeInteractionWithItem _modeInteraction;
+    [SerializeField] private ActionsItems _actions;
     
     private HintItem _hintItem;
     private Transform _thisTransform;
+    private GameObject _hitObject;
     private int _layerMask = 1 << 8;
 
     private void Start()
@@ -23,6 +23,11 @@ public class SelectItems : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        GetItem();
+    }
+
     private void FixedUpdate()
     {
         RaycastHit hit;
@@ -31,22 +36,7 @@ public class SelectItems : MonoBehaviour
         if (Physics.Raycast(_thisTransform.position, transform.TransformDirection(Vector3.forward), out hit,
             _maxDistanceRay, _layerMask))
         {
-            GameObject objHit = hit.collider.gameObject;
-            if (WaitingClickAndCheckStore(objHit))
-            {
-                Item item = SearchComponentItem(objHit);
-                if (CheckingItemCanTaken(item))
-                {
-                    TakeItem(item, objHit);
-                }
-                else
-                {
-                    print("Активация инвентаря и двиджение камеры");
-                    // Движение камеры к объекты и показ инвентаря
-                    _modeInteraction.SetActiveModeAndItem(item);
-                }
-            }
-
+            _hitObject = hit.collider.gameObject;
             _hintItem.SelectDisplayButton(true);
         }
         else
@@ -54,39 +44,19 @@ public class SelectItems : MonoBehaviour
             _hintItem.SelectDisplayButton(false);
         }
     }
-    
-    
-    private bool WaitingClickAndCheckStore(GameObject objHit)
-    {
-        return Input.GetKey(KeyCode.E) && _store.CheckAvailableSpace();
-    }
 
-    private Item SearchComponentItem(GameObject objHit)
+    private void GetItem()
     {
-        Item item = objHit.GetComponent<Item>();
-        if (item == null)
+        var state = WaitingInteractionItem();
+        if (state)
         {
-            throw new Exception("Не удалось подобрать предмет, отсутствует скрипт Item");
+            _actions.TransmittingItem(_hitObject);
+            _hitObject = null;
         }
-
-        return item;
-    }
-
-    private bool CheckingItemCanTaken(Item item)
-    {
-        return item.Parameters.TypeActionSubject == TypeActionSubject.SelectionInventory;
-    }
-
-    private void TakeItem(Item item, GameObject objHit)
-    {
-        AddItemOnInventory(item);
-        _drawInventory.DrawCells();
-        Destroy(objHit);
     }
     
-    private void AddItemOnInventory(Item item)
+    private bool WaitingInteractionItem()
     {
-        print($"Предмет: {item.Parameters.Name}");
-        _store.AddItem(item.Parameters);
+        return Input.GetKeyDown(KeyCode.E) && _store.CheckAvailableSpace() && _hitObject != null;
     }
 }
