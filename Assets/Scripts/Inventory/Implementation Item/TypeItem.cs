@@ -5,5 +5,12 @@
     Keys,
     RemoteController,
     Battery,
-    TV
+    TV,
+    Flashlight,
+    ElectricShield,
+    TeddyBear,
+    WoodenHandle,
+    Door,
+    Eye,
+    Owl
 }

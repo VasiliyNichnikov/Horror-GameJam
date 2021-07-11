@@ -7,6 +7,8 @@ public class EventManager : MonoBehaviour
 
     public static Action<ParametersItem> EventChooseItem;
 
+    public static Action EventSelectFlashlight;
+
     #endregion
 
     #region Public methods
@@ -14,6 +16,11 @@ public class EventManager : MonoBehaviour
     public static void CallEventChooseItem(ParametersItem item)
     {
         EventChooseItem?.Invoke(item);
+    }
+
+    public static void CallEventSelectFlashlight()
+    {
+        EventSelectFlashlight?.Invoke();
     }
 
     #endregion

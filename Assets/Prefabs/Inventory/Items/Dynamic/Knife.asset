@@ -15,7 +15,8 @@ MonoBehaviour:
   _name: "\u041D\u043E\u0436"
   _description: "\u041C\u043E\u0436\u043D\u043E \u043A\u043E\u0433\u043E-\u0442\u043E
     \u0432\u0441\u043F\u043E\u0440\u043E\u0442\u044C"
-  _type: 0
-  _typeInteraction: 0
+  _type: 1
+  _typeInteraction: 8
+  conditionItem: 0
   _prefab: {fileID: 0}
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: b7c9d3e25e7e40c4ea7da8d9754436ca, type: 3}

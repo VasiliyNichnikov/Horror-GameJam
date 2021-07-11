@@ -12,6 +12,7 @@ public class ActionDynamicItem : MonoBehaviour
 
     public void TakeItemAndDestroyObjHit(Item item, GameObject objHit)
     {
+        item.DynamicAction();
         AddItemOnInventory(item);
         _drawInventory.DrawCells();
         Destroy(objHit);

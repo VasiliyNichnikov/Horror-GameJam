@@ -6,4 +6,6 @@ public abstract class Item : MonoBehaviour
     public ParametersItem Parameters => _parameters;
 
     public abstract void InteractionStaticAction(Item item);
+
+    public abstract void DynamicAction();
 }
