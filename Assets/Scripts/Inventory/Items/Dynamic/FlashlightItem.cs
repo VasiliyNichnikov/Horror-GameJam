@@ -1,11 +1,25 @@
-﻿public class FlashlightItem : Item
+﻿using UnityEngine;
+
+public class FlashlightItem : Item
 {
-    public override void InteractionStaticAction(Item item)
+    [SerializeField] private GameObject _batteries;
+    
+    private void Start()
     {
+        _batteries.SetActive(false);
     }
     
+    public override void InteractionStaticAction(ParametersItem parameters)
+    {
+    }
+
     public override void DynamicAction()
     {
-        EventManager.CallEventSelectFlashlight();
+        EventManager.CellSelectMonologueText(TypeMonologue.Batteries);
+        _batteries.SetActive(true);
+    }
+    
+    public override void ActivasionAction()
+    {
     }
 }

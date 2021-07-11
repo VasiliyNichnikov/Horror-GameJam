@@ -16,12 +16,16 @@ public class StoreItems : MonoBehaviour
     public void AddItem(ParametersItem item)
     {
         _items.Add(item);
-        print("Предмет взят");
     }
     
     public void DeleteItem(int index)
     {
         _items.RemoveAt(index);
+    }
+    
+    public void DeleteItem(ParametersItem item)
+    {
+        _items.Remove(item);
     }
     
     public bool CheckAvailableSpace()

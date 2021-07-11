@@ -1,7 +1,13 @@
-﻿public class TeddyBearItem : Item
+﻿using UnityEngine;
+
+public class TeddyBearItem : Item
 {
-    public override void InteractionStaticAction(Item item)
+    [SerializeField] private ActionDynamicItem _actionDynamic;
+    [SerializeField] private Item _eye;
+    
+    public override void InteractionStaticAction(ParametersItem parameters)
     {
+        _actionDynamic.TakeItem(_eye);
     }
     
     public override void DynamicAction()

@@ -55,6 +55,7 @@ public class SelectItems : MonoBehaviour
         }
     }
     
+    
     private bool WaitingInteractionItem()
     {
         return Input.GetKeyDown(KeyCode.E) && _store.CheckAvailableSpace() && _hitObject != null;

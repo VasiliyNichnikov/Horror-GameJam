@@ -12,5 +12,6 @@
     WoodenHandle,
     Door,
     Eye,
-    Owl
+    Owl,
+    Phone
 }

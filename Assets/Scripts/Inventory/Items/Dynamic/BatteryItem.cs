@@ -1,10 +1,27 @@
-﻿public class BatteryItem : Item
+﻿using UnityEngine;
+
+public class BatteryItem : Item
 {
-    public override void InteractionStaticAction(Item item)
+    [SerializeField] private GameObject _remoteController;
+    [SerializeField] private AudioSource _tvSource;
+    private void Start()
+    {
+        _remoteController.SetActive(false);
+    }
+    
+    public override void InteractionStaticAction(ParametersItem parameters)
     {
     }
     
     public override void DynamicAction()
+    {
+        _tvSource.Play();
+        EventManager.CallSelectFlashlight();
+        EventManager.CellSelectMonologueText(TypeMonologue.FindRemoteControl);
+        _remoteController.SetActive(true);
+    }
+    
+    public override void ActivasionAction()
     {
     }
 }

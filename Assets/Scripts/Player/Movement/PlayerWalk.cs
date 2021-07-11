@@ -26,6 +26,7 @@ public class PlayerWalk : MonoBehaviour
         movement = Vector3.ClampMagnitude(movement, _speed);
         movement = transform.TransformDirection(movement);
         _character.Move(movement * _speed * Time.deltaTime);
+        transform.localPosition = new Vector3(transform.localPosition.x, 1.5f, transform.localPosition.z);
     }
 
 }
