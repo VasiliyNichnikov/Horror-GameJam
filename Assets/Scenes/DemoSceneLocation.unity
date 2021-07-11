@@ -758,7 +758,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d3d8f98768ec800499c2bbc6f36485b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4911203607838398677}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 713055219}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da13937207d54254eb6143636b2ff058, type: 3}
@@ -3653,6 +3653,38 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 709742379}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &713055219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7521886784189901422, guid: 3c524885e3b9d424cb7c724086164153,
+    type: 3}
+  m_PrefabInstance: {fileID: 4911203607838398677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &713055220
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713055219}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 150, y: 150}
+  m_EdgeRadius: 0
 --- !u!1 &718558279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4966,10 +4998,10 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1113084107}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 279
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 2
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -6814,8 +6846,8 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_Camera: {fileID: 1113084109}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -6860,6 +6892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _store: {fileID: 2016980025}
+  _name: {fileID: 1059819132}
+  _description: {fileID: 1801627598}
   _cells:
   - {fileID: 208344028}
   - {fileID: 1459844841}
@@ -8470,20 +8504,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1868213751}
     m_Modifications:
-    - target: {fileID: 206180974330099832, guid: 3c524885e3b9d424cb7c724086164153,
+    - target: {fileID: 2936013917543163231, guid: 3c524885e3b9d424cb7c724086164153,
         type: 3}
-      propertyPath: m_RaycastTarget
+      propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291985108312829375, guid: 3c524885e3b9d424cb7c724086164153,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329121074449453068, guid: 3c524885e3b9d424cb7c724086164153,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329121074449453068, guid: 3c524885e3b9d424cb7c724086164153,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329121074449453068, guid: 3c524885e3b9d424cb7c724086164153,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5790143627727100299, guid: 3c524885e3b9d424cb7c724086164153,
         type: 3}
       propertyPath: _modeInteraction
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6363373819317599405, guid: 3c524885e3b9d424cb7c724086164153,
+    - target: {fileID: 7369032713660681673, guid: 3c524885e3b9d424cb7c724086164153,
         type: 3}
-      propertyPath: m_Maskable
-      value: 0
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7521886784189901422, guid: 3c524885e3b9d424cb7c724086164153,
         type: 3}

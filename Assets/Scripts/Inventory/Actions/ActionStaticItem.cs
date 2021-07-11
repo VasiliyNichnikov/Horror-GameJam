@@ -17,10 +17,30 @@ public class ActionStaticItem : MonoBehaviour
         EventManager.EventChooseItem -= ChoiceItem;
     }
 
+    private void Update()
+    {
+        var isDeactivationInteraction = CheckingDeactivationInteraction();
+        if (isDeactivationInteraction)
+        {
+            DeactivationInteraction();
+        }
+    }
+
+    private bool CheckingDeactivationInteraction()
+    {
+        return (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab)) && _isActiveInteraction;
+    }
+
     public void ActivatingInteraction(Item item)
     {
         _isActiveInteraction = true;
         _selectedItem = item;
+    }
+
+    private void DeactivationInteraction()
+    {
+        _isActiveInteraction = false;
+        _selectedItem = null;
     }
 
     private void ChoiceItem(ParametersItem parameters)
@@ -29,6 +49,7 @@ public class ActionStaticItem : MonoBehaviour
         {
             throw new Exception("Предмета для взаимодействия нет");
         }
+
         var isPossible = CheckingPossibilityInteraction(parameters);
         if (isPossible)
         {
@@ -39,7 +60,7 @@ public class ActionStaticItem : MonoBehaviour
             print("Данный предмет не подходит");
         }
     }
-    
+
     private bool CheckingPossibilityInteraction(ParametersItem parameters)
     {
         return _selectedItem.Parameters.Type == parameters.TypeInteraction &&
