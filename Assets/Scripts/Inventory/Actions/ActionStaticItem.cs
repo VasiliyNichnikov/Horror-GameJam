@@ -3,18 +3,24 @@ using UnityEngine;
 
 public class ActionStaticItem : MonoBehaviour
 {
+    private StoreItems _store;
     private Item _selectedItem;
     private static bool _isActiveInteraction;
     public static bool IsActiveInteration => _isActiveInteraction;
 
     private void OnEnable()
     {
-        EventManager.EventChooseItem += ChoiceItem;
+        EventManager.EventChooseItem += ChoiceItemAndClearCell;
     }
 
     private void OnDisable()
     {
-        EventManager.EventChooseItem -= ChoiceItem;
+        EventManager.EventChooseItem -= ChoiceItemAndClearCell;
+    }
+
+    private void Start()
+    {
+        _store = GetComponent<StoreItems>();
     }
 
     private void Update()
@@ -22,7 +28,7 @@ public class ActionStaticItem : MonoBehaviour
         var isDeactivationInteraction = CheckingDeactivationInteraction();
         if (isDeactivationInteraction)
         {
-            DeactivationInteraction();
+            DeactivationInteractionAndCloseInventory();
         }
     }
 
@@ -31,19 +37,20 @@ public class ActionStaticItem : MonoBehaviour
         return (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab)) && _isActiveInteraction;
     }
 
-    public void ActivatingInteraction(Item item)
+    public void ActivatingInteractionAndShowInventory(Item item)
     {
         _isActiveInteraction = true;
         _selectedItem = item;
+        EventManager.CellChangeStateInventory(true);
     }
 
-    private void DeactivationInteraction()
+    private void DeactivationInteractionAndCloseInventory()
     {
         _isActiveInteraction = false;
         _selectedItem = null;
     }
 
-    private void ChoiceItem(ParametersItem parameters)
+    private void ChoiceItemAndClearCell(ParametersItem parameters, CellItem cell)
     {
         if (_selectedItem == null)
         {
@@ -54,6 +61,9 @@ public class ActionStaticItem : MonoBehaviour
         if (isPossible)
         {
             print($"Взаимодействие с объектом: {_selectedItem.Parameters.Name}");
+            _selectedItem.InteractionStaticAction(parameters);
+            cell.ClearCell();
+            _store.DeleteItem(parameters);
         }
         else
         {

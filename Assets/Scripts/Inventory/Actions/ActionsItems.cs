@@ -31,7 +31,7 @@ public class ActionsItems : MonoBehaviour
     
     private void TransmittingStaticItem(Item item)
     {
-        _staticItem.ActivatingInteraction(item);
+        _staticItem.ActivatingInteractionAndShowInventory(item);
     }
 
     private void TransmittingDynamicItem(Item item, GameObject objHit)

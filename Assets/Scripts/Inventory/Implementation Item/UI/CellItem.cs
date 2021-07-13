@@ -27,7 +27,7 @@ public class CellItem : MonoBehaviour
         if (_parameters != null)
         {
             SetNameAndDescription();
-            EventManager.CallEventChooseItem(_parameters);
+            EventManager.CallChooseItem(_parameters, this);
         }
     }
     
@@ -38,9 +38,17 @@ public class CellItem : MonoBehaviour
     }
 
     
-    public void DeleteIcon()
+    public void ClearCell()
     {
         _icon.sprite = null;
+        _parameters = null;
+        ClearNameAndDescription();
+    }
+
+    private void ClearNameAndDescription()
+    {
+        _name.text = "";
+        _description.text = "";
     }
     
 }

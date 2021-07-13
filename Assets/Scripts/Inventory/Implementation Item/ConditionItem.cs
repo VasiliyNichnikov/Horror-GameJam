@@ -1,5 +1,6 @@
 ﻿public enum ConditionItem
 {
     Dynamic,
-    Static
+    Static,
+    Activation
 }
